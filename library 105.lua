@@ -7,8 +7,8 @@ local Settings = {
     
     ItemColor = Color3.fromRGB(30, 30, 30),
     BorderColor = Color3.fromRGB(45, 45, 45),
-    MinSize = Vector2.new(550, 350),
-    MaxSize = Vector2.new(550, 350)
+    MinSize = Vector2.new(450, 350),
+    MaxSize = Vector2.new(450, 350)
 }
 
 
@@ -275,8 +275,8 @@ Menu_Frame.Name = "Menu"
 Menu_Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
 Menu_Frame.BorderColor3 = Color3.fromRGB(40, 40, 40)
 Menu_Frame.BorderMode = Enum.BorderMode.Inset
-Menu_Frame.Position = UDim2.new(0.5, -250, 0.5, -275)
-Menu_Frame.Size = UDim2.new(0, 550, 0, 350)
+Menu_Frame.Position = UDim2.new(0.5, -55, 0.5, -30)
+Menu_Frame.Size = UDim2.new(0, 450, 0, 350)
 Menu_Frame.Visible = false
 Menu_Frame.Parent = Menu.Screen
 CreateStroke(Menu_Frame, Color3.new(), 2)
