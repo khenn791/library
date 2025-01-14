@@ -1,0 +1,122 @@
+local Watermark = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+local name = Instance.new("TextLabel")
+local fps = Instance.new("TextLabel")
+local cb = Instance.new("TextLabel")
+
+Watermark.Name = "Watermark"
+Watermark.Parent = game.CoreGui
+
+ImageLabel.Parent = Watermark
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0,76, 76, 34)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.07, 0, -0.0255202732, 0)
+ImageLabel.Size = UDim2.new(0, 350, 0, 25)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=6837981571"
+
+name.Name = "name"
+name.Parent = ImageLabel
+name.BackgroundColor3 = Color3.fromRGB(44, 33, 98)
+name.BackgroundTransparency = 1.000
+name.Position = UDim2.new(0.0398406386, 0, -0.199999794, 0)
+name.Size = UDim2.new(0, 71, 0, 35)
+name.Font = Enum.Font.Code
+name.Text = ""
+name.TextColor3 = Color3.fromRGB(45, 112, 78)
+name.TextSize = 14.000
+
+fps.Name = "fps"
+fps.Parent = ImageLabel
+fps.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fps.BackgroundTransparency = 1.000
+fps.Position = UDim2.new(0.289929748, 0, 0.0799999982, 0)
+fps.Size = UDim2.new(0, 150, 0, 20)
+fps.Font = Enum.Font.Code
+fps.Text = "60 fps"
+fps.TextColor3 = Color3.fromRGB(255, 255, 255)
+fps.TextSize = 14.000
+
+cb.Name = "cb"
+cb.Parent = ImageLabel
+cb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+cb.BackgroundTransparency = 1.000
+cb.Position = UDim2.new(0.70826441, 22, 0, 0)
+cb.Size = UDim2.new(0, 6, 0, 22)
+cb.Font = Enum.Font.Code
+cb.Text = "private"
+cb.TextColor3 = Color3.fromRGB(255, 255, 255)
+cb.TextSize = 14.000
+
+-- Function to update FPS
+local function GWWZ_fake_script() -- fps.LocalScript 
+    local script = Instance.new('LocalScript', fps)
+
+    local FPS = 0
+    
+    local Tiempo = tick()
+    
+    spawn(function()
+        while game:GetService("RunService").RenderStepped:wait() do
+            local Transcurrido = math.abs(Tiempo-tick())
+            Tiempo = tick()
+            FPS = math.floor(1/Transcurrido)
+        end
+    end)
+    
+    while wait(0.5) do
+        script.Parent.Text = tostring(FPS) .. " fps"
+    end
+end
+coroutine.wrap(GWWZ_fake_script)()
+
+-- Function to make UI draggable
+local function ZTKOG_fake_script() -- ImageLabel.LocalScript 
+    local script = Instance.new('LocalScript', ImageLabel)
+
+    local UIS = game:GetService("UserInputService")
+    function dragify(Frame)
+        dragToggle = nil
+        local dragSpeed = 0
+        dragInput = nil
+        dragStart = nil
+        local dragPos = nil
+        function updateInput(input)
+            local Delta = input.Position - dragStart
+            local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+            game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+        end
+        Frame.InputBegan:Connect(function(input)
+            if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+                dragToggle = true
+                dragStart = input.Position
+                startPos = Frame.Position
+                input.Changed:Connect(function()
+                    if input.UserInputState == Enum.UserInputState.End then
+                        dragToggle = false
+                    end
+                end)
+            end
+        end)
+        Frame.InputChanged:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+                dragInput = input
+            end
+        end)
+        game:GetService("UserInputService").InputChanged:Connect(function(input)
+            if input == dragInput and dragToggle then
+                updateInput(input)
+            end
+        end)
+    end
+    
+    dragify(script.Parent)
+end
+coroutine.wrap(ZTKOG_fake_script)()
+
+-- Function to update username
+local function updateUsername()
+    local script = Instance.new('LocalScript', name)
+    local player = game.Players.LocalPlayer
+    script.Parent.Text = "    Athel: " .. player.Name
+end
+coroutine.wrap(updateUsername)()
