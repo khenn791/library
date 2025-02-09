@@ -1,4 +1,6 @@
- local Settings = {
+-- by khen.cc
+
+local Settings = {
     Accent = Color3.fromHex("#90EE90"),
     Font = Enum.Font.SourceSans,
     IsBackgroundTransparent = true,
