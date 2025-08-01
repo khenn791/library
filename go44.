@@ -1,5 +1,5 @@
 --// library script private
-getgenv().namehub = "Private"
+getgenv().namehub = "khen"
 local UserInputService = game:GetService('UserInputService')
 local LocalPlayer = game:GetService('Players').LocalPlayer
 local TweenService = game:GetService('TweenService')
@@ -21,8 +21,8 @@ local Library = {
 }
 
 
-if not isfolder("cac hub") then
-    makefolder("cac hub")
+if not isfolder("im khen") then
+    makefolder("im khen")
 end
 
 function Library:disconnect()
