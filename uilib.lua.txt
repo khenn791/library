@@ -7,14 +7,14 @@
 
 
 local Settings = {
-    Accent = Color3.fromHex("#add8e6"),
+    Accent = Color3.fromRGB(255, 0, 0),
     Font = Enum.Font.SourceSans,
     IsBackgroundTransparent = true,
     Rounded = false,
     Dim = false,
-    
-    ItemColor = Color3.fromRGB(30, 30, 30),
-    BorderColor = Color3.fromRGB(45, 45, 45),
+
+    ItemColor = Color3.fromRGB(20, 20, 20),
+    BorderColor = Color3.fromRGB(60, 0, 0),
     MinSize = Vector2.new(500, 400),
     MaxSize = Vector2.new(500, 400)
 }
